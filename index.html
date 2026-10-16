@@ -45,13 +45,41 @@ body.broadcast{overflow:hidden}body.broadcast .editor{display:none}body.broadcas
 .broadcast-clock{position:absolute;right:2.3%;bottom:2.3%;z-index:80;display:flex;align-items:center;gap:.7cqw;padding:.62cqh 1.1cqw;background:linear-gradient(110deg,#071326ed,#173b59e8);border:1px solid #72caff78;border-left:3px solid #34c5ff;box-shadow:0 0 2cqw #0009, inset 0 1px #ffffff24;border-radius:.25cqw;font-variant-numeric:tabular-nums;font-size:clamp(12px,1.42cqw,30px);font-weight:800;letter-spacing:.07em;line-height:1.2;white-space:nowrap}
 .broadcast-clock .clock-dot{width:.43cqw;height:.43cqw;border-radius:50%;background:#35d9ff;box-shadow:0 0 .7cqw #35d9ff;animation:clockPulse 2s ease-in-out infinite}
 @keyframes clockPulse{0%,100%{opacity:1}50%{opacity:.45}}
-</style></head><body class="broadcast"><div class="viewport"><main class="stage"><div class="depth-grid"></div><div class="stadium"></div><div class="stands"></div><div class="pitch"></div><div class="flood l"></div><div class="flood r"></div><div class="scan"></div><div class="orbit"></div><div class="orbit two"></div><div class="arc l"></div><div class="arc r"></div><div class="bars"><i class="bar"></i><i class="bar"></i><i class="bar"></i></div><div class="particles" id="particles"></div><div class="light-sweep"></div><div class="broadcast-lines"></div><div class="vignette"></div><div class="edge left"></div><div class="edge right"></div><div class="upper"><span id="eyebrowText">FUTEBOL • PRÉ-JOGO</span><span class="live">EM DIRETO</span></div><div class="title" id="headlineText">TRANSMISSÃO AO VIVO</div><div class="match"><div class="team home"><div class="logo-panel" id="homePanel"><img alt="Emblema equipa da casa" class="crest" id="homeCrest" src="logos/casa.png"/></div><div class="team-name" id="homeText">CADAVAL</div></div><div class="versus">VS</div><div class="team away"><div class="logo-panel" id="awayPanel"><img alt="Emblema equipa visitante" class="crest" id="awayCrest" src="logos/visitante.png"/></div><div class="team-name" id="awayText">CD MAFRA</div></div></div><div class="ticker"><span id="venueText">ESTÁDIO MUNICIPAL</span><i class="sep"></i><span id="dateText">25 OUT 2026 · 16:00</span></div><div class="bottom" id="messageText">A TRANSMISSÃO COMEÇA BREVEMENTE</div><div aria-label="Hora atual" class="broadcast-clock"><i class="clock-dot"></i><time id="broadcastClock">--:--:--</time></div></main></div><script id="clock-runtime">
+
+/* V6 Android stability: deterministic layers, persistent text, lightweight motion. */
+.stage{isolation:isolate;perspective:none;transform-style:flat}
+.stage:before{z-index:1}.stage:after{z-index:8;animation:none;opacity:.15;mix-blend-mode:normal}
+.depth-grid,.stadium,.stands,.pitch,.flood,.scan,.orbit,.arc,.bars,.particles,.light-sweep,.broadcast-lines,.vignette,.edge{pointer-events:none}
+.depth-grid,.stadium,.stands,.pitch,.flood,.scan,.orbit,.arc,.bars,.particles,.light-sweep,.broadcast-lines{z-index:0}
+.vignette,.edge{z-index:3}
+.upper,.title,.match,.ticker,.bottom,.broadcast-clock{z-index:20;visibility:visible!important;opacity:1!important;filter:none}
+.upper{top:5%;font-size:1.32cqw;text-shadow:0 2px 9px #000}
+.title{top:13%;font-size:4.2cqw;animation:none;opacity:1!important}
+.title:after{animation:none;opacity:.8}
+.match{top:34%;height:39%;animation:none;transform:none;transform-style:flat}
+.team,.team-name,.versus,.logo-panel,.crest{opacity:1!important;visibility:visible!important}
+.logo-panel,.away .logo-panel{animation:none;transform:none;backface-visibility:visible}
+.crest,.away .crest{animation:none;transform:none}
+.versus{animation:none;filter:none}
+.live:before{animation:none;opacity:1}
+.flood,.flood.r{animation:none;filter:blur(1.5cqw);opacity:.4}
+.scan,.orbit,.orbit.two,.arc,.bar,.particle,.light-sweep,.broadcast-lines{animation:none!important}
+.stadium{animation:cameraDolly 8s ease-in-out infinite}
+.stands{animation:none;transform:perspective(50cqw) rotateX(13deg)}
+.pitch{animation:none;transform:perspective(70cqw) rotateX(42deg)}
+.depth-grid{animation:none}
+.ticker{bottom:19%;font-size:1.55cqw}
+.bottom{bottom:5%;animation:none;opacity:1!important;font-size:1.18cqw;letter-spacing:.21em}
+.broadcast-clock{position:absolute;left:50%;right:auto;bottom:10%;transform:translateX(-50%);padding:0;margin:0;border:0;border-radius:0;background:none;box-shadow:none;display:block;font-family:Arial,Helvetica,sans-serif;font-size:2.35cqw;font-weight:800;letter-spacing:.13em;line-height:1.2;color:#e9f7ff;text-shadow:0 2px 12px #000b,0 0 1cqw #31bfff66;font-variant-numeric:tabular-nums;white-space:nowrap}
+.broadcast-clock .clock-dot{display:none}
+@media(max-width:700px){.broadcast-clock{font-size:2.55cqw}}
+</style></head><body class="broadcast"><div class="viewport"><main class="stage"><div class="depth-grid"></div><div class="stadium"></div><div class="stands"></div><div class="pitch"></div><div class="flood l"></div><div class="flood r"></div><div class="scan"></div><div class="orbit"></div><div class="orbit two"></div><div class="arc l"></div><div class="arc r"></div><div class="bars"><i class="bar"></i><i class="bar"></i><i class="bar"></i></div><div class="particles" id="particles"></div><div class="light-sweep"></div><div class="broadcast-lines"></div><div class="vignette"></div><div class="edge left"></div><div class="edge right"></div><div class="upper"><span id="eyebrowText">FUTEBOL • PRÉ-JOGO</span><span class="live">EM DIRETO</span></div><div class="title" id="headlineText">TRANSMISSÃO AO VIVO</div><div class="match"><div class="team home"><div class="logo-panel" id="homePanel"><img alt="Emblema equipa da casa" class="crest" id="homeCrest" src="logos/casa.png"/></div><div class="team-name" id="homeText">CADAVAL</div></div><div class="versus">VS</div><div class="team away"><div class="logo-panel" id="awayPanel"><img alt="Emblema equipa visitante" class="crest" id="awayCrest" src="logos/visitante.png"/></div><div class="team-name" id="awayText">CD MAFRA</div></div></div><div class="ticker"><span id="venueText">ESTÁDIO MUNICIPAL</span><i class="sep"></i><span id="dateText">25 OUT 2026 · 16:00</span></div><div class="bottom" id="messageText">A TRANSMISSÃO COMEÇA BREVEMENTE</div><div aria-label="Hora atual" class="broadcast-clock"><time id="broadcastClock">--:--:--</time></div></main></div><script id="clock-runtime">
 (function(){
  const clock=document.getElementById('broadcastClock');
  if(!clock)return;
  const fmt=new Intl.DateTimeFormat('pt-PT',{hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
  function tick(){clock.textContent=fmt.format(new Date());}
- tick();setInterval(tick,250);
+ tick();setInterval(tick,1000);
 })();
 </script><script>(()=>{
 const keys={homeName:'homeText',awayName:'awayText',venue:'venueText',date:'dateText',eyebrow:'eyebrowText',headline:'headlineText',message:'messageText'};

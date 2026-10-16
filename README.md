@@ -1,22 +1,23 @@
-# Separador Futebol — PRISM Android / GitHub Pages
+# Separador Futebol V6 — PRISM Android / GitHub Pages
 
-## Publicação inicial
-1. Cria um repositório GitHub público, por exemplo `futebol-live`.
-2. Carrega **o conteúdo desta pasta** para a raiz do repositório: `index.html`, `config.json`, `editor.html` e a pasta `logos/`.
-3. Em Settings → Pages, seleciona Deploy from a branch, `main`, pasta `/ (root)` e guarda.
-4. Aguarda a publicação. O endereço será semelhante a `https://UTILIZADOR.github.io/futebol-live/`.
-5. No PRISM Live Studio Android, adiciona um widget Web com esse endereço, se essa opção estiver disponível na tua versão.
+## Correções V6
+- Título e faixa superior com prioridade de camada explícita para impedir que efeitos gráficos os ocultem.
+- Removidas animações de brilho/piscar, de emblemas e de efeitos 3D pesados para maior estabilidade no WebView Android.
+- Movimento de câmara suave de 8 segundos apenas no fundo; informações e emblemas ficam estáveis.
+- Relógio digital centrado, sem caixa, acima da mensagem inferior; atualiza a cada segundo.
+- Ajustada a posição da barra de estádio/data para dar espaço ao relógio.
 
-## Atualizar para o próximo jogo
-1. Abre `editor.html` no teu navegador, altera os campos e carrega novos emblemas.
-2. Clica **Descarregar config.json** e **Descarregar emblema casa.png / visitante.png**.
-3. No GitHub, substitui `config.json`, `logos/casa.png` e `logos/visitante.png` pelos novos ficheiros (mantém exatamente estes nomes).
-4. Após a publicação, o separador tenta obter novas configurações a cada 15 segundos. A cache do GitHub Pages ou do PRISM pode atrasar a atualização; nesse caso recarrega o widget.
+## Atualizar o GitHub Pages
+1. Substitui `index.html` e `editor.html` na raiz do repositório pelos ficheiros V6.
+2. Mantém `config.json` e `logos/` já existentes, se tiveres personalizado os dados.
+3. Aguarda a publicação em Settings > Pages.
+4. Recarrega o widget Web no PRISM Android para evitar usar a versão antiga em cache. Se necessário, remove e volta a adicionar o widget.
 
-## Notas
-- Os emblemas usam uma caixa responsiva e `object-fit: contain`, sem distorção.
-- O relógio usa a hora do dispositivo Android, em formato 24h. Confirma o fuso horário no dispositivo.
-- O loop visual continua a ser feito em CSS, com período de 8 segundos. O relógio avança independentemente.
-- O editor é local: não envia ficheiros para o GitHub automaticamente.
-- GitHub Pages publica ficheiros publicamente; não coloques dados privados no repositório.
-- É necessária ligação à Internet para carregar o site no PRISM Android.
+## Utilização
+- O URL do GitHub Pages continua igual.
+- `editor.html` permite alterar dados e descarregar `config.json` e emblemas para substituir no repositório.
+- O site verifica atualizações de `config.json` a cada 15 segundos, mas a cache pode atrasá-las.
+- O relógio utiliza a hora local do dispositivo Android.
+- Para testar em computador, abre `index.html` com servidor local (por exemplo `python3 -m http.server 8000`).
+
+Nota: o vídeo fornecido mostra a ausência do título e faixa superior e o relógio junto à marca de água PRISM; esta revisão aborda estes problemas no código. O comportamento final no WebView específico do PRISM deve ser confirmado no dispositivo.
